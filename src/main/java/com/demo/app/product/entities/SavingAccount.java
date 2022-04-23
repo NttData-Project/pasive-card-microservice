@@ -40,4 +40,7 @@ public class SavingAccount extends Audit{
     @NotEmpty
     @Size(min = 8,max = 8)
     private String dni;
+
+    @Field(name = "number_transactions")
+    private Integer numberTransactions;
 }
