@@ -11,6 +11,7 @@ public interface FixedTermAccountService {
     Flux<FixedTermAccount> findAllByIdentifier(String identifier);
     Mono<FixedTermAccount> findByIdentifierAndAccount(String identifier, String account);
     Mono<Boolean> findByIdentifier(String identifier);
+    Mono<FixedTermAccount> findById(String id);
     Mono<FixedTermAccount> update(FixedTermAccount card,String id);
     Mono<Void> delete(String id);
 }

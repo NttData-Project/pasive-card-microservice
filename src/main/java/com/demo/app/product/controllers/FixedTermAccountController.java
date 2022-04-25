@@ -29,6 +29,11 @@ public class FixedTermAccountController {
         return cardService.findAllByIdentifier(identifier);
     }
 
+    @GetMapping("/{id}")
+    public Mono<FixedTermAccount> findById(@PathVariable String id){
+        return cardService.findById(id);
+    }
+
     @GetMapping("/identifier/{identifier}")
     public Mono<Boolean> findByIdentifier(@PathVariable String identifier){
         return cardService.findByIdentifier(identifier);

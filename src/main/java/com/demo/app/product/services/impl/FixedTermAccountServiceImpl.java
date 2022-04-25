@@ -51,6 +51,11 @@ public class FixedTermAccountServiceImpl implements FixedTermAccountService {
     }
 
     @Override
+    public Mono<FixedTermAccount> findById(String id) {
+        return cardRepository.findById(id);
+    }
+
+    @Override
     public Mono<FixedTermAccount> update(FixedTermAccount card, String id) {
         return cardRepository.findById(id).flatMap(x->{
             x.setCvc(card.getCvc());

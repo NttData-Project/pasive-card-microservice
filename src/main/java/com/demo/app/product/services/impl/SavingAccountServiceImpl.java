@@ -51,6 +51,11 @@ public class SavingAccountServiceImpl implements SavingAccountService {
     }
 
     @Override
+    public Mono<SavingAccount> findById(String id) {
+        return cardRepository.findById(id);
+    }
+
+    @Override
     public Mono<SavingAccount> update(SavingAccount card, String id) {
         return cardRepository.findById(id).flatMap(x->{
             x.setCvc(card.getCvc());

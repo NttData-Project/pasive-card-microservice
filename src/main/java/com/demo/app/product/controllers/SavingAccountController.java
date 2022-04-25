@@ -28,6 +28,10 @@ public class SavingAccountController {
     public Flux<SavingAccount> findAllByIdentifier(@PathVariable String identifier){
         return cardService.findAllByIdentifier(identifier);
     }
+    @GetMapping("/{id}")
+    public Mono<SavingAccount> findById(@PathVariable String id){
+        return cardService.findById(id);
+    }
 
     @GetMapping("/identifier/{identifier}")
     public Mono<Boolean> findByIdentifier(@PathVariable String identifier){

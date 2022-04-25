@@ -52,6 +52,11 @@ public class CurrentAccountServiceImpl implements CurrentAccountService{
     }
 
     @Override
+    public Mono<CurrentAccount> findById(String id) {
+        return cardRepository.findById(id);
+    }
+
+    @Override
     public Mono<CurrentAccount> updateByAccountNumberAndIdentifier(CurrentAccount card,String identifier, String account) {
         return cardRepository.findByIdentifierAndAccountNumber(identifier,account).flatMap(x->{
             x.setCvc(card.getCvc());

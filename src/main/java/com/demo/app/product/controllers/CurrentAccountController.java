@@ -33,6 +33,11 @@ public class CurrentAccountController {
         return cardService.findAllByIdentifier(identifier);
     }
 
+    @GetMapping("/{id}")
+    public Mono<CurrentAccount> findById(@PathVariable String id){
+        return cardService.findById(id);
+    }
+
     @GetMapping("/identifier/{identifier}")
     public Mono<Boolean> findByIdentifier(@PathVariable String identifier){
         return cardService.findByIdentifier(identifier);

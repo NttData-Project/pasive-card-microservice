@@ -11,6 +11,7 @@ public interface CurrentAccountService {
     Flux<CurrentAccount> findAllByIdentifier(String identifier);
     Mono<CurrentAccount> findByIdentifierAndAccount(String identifier,String account);
     Mono<Boolean> findByIdentifier(String identifier);
+    Mono<CurrentAccount> findById(String id);
     Mono<CurrentAccount> updateByAccountNumberAndIdentifier(CurrentAccount card,String identifier,String account);
     Mono<CurrentAccount> update(CurrentAccount card,String identifier);
     Mono<Void> delete(String identifier);

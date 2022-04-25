@@ -11,6 +11,7 @@ public interface SavingAccountService {
     Flux<SavingAccount> findAllByIdentifier(String identifier);
     Mono<SavingAccount> findByIdentifierAndAccount(String identifier, String account);
     Mono<Boolean> findByIdentifier(String identifier);
+    Mono<SavingAccount> findById(String id);
     Mono<SavingAccount> update(SavingAccount card,String id);
     Mono<Void> delete(String id);
 }
