@@ -8,7 +8,7 @@ import reactor.core.publisher.Mono;
 
 @Repository
 public interface FixedTermAccountRepository extends ReactiveMongoRepository<FixedTermAccount,String> {
-    Mono<FixedTermAccount> findByDni(String dni);
-    Flux<FixedTermAccount> findAllByDni(String dni);
-    Mono<FixedTermAccount> findByDniAndAccountNumber(String dni, String account);
+    Mono<FixedTermAccount> findByIdentifier(String identifier);
+    Flux<FixedTermAccount> findAllByIdentifier(String identifier);
+    Mono<FixedTermAccount> findByIdentifierAndAccountNumber(String identifier, String account);
 }

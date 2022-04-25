@@ -8,9 +8,9 @@ public interface SavingAccountService {
     Flux<SavingAccount> findAll();
     Mono<SavingAccount> save(SavingAccount card);
     Flux<SavingAccount> saveAll(Flux<SavingAccount> cards);
-    Flux<SavingAccount> findAllByDni(String dni);
-    Mono<SavingAccount> findByDniAndAccount(String dni, String account);
-    Mono<Boolean> findByDni(String dni);
+    Flux<SavingAccount> findAllByIdentifier(String identifier);
+    Mono<SavingAccount> findByIdentifierAndAccount(String identifier, String account);
+    Mono<Boolean> findByIdentifier(String identifier);
     Mono<SavingAccount> update(SavingAccount card,String id);
     Mono<Void> delete(String id);
 }

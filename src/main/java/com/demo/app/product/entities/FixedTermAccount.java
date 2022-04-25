@@ -35,8 +35,8 @@ public class FixedTermAccount extends Audit{
     private Integer cvc;
 
     @NotEmpty
-    @Size(min = 8,max = 8)
-    private String dni;
+    @Size(min = 8,max = 11)
+    private String identifier;
 
     @Field(name = "number_transactions")
     private Integer numberTransactions = 1;

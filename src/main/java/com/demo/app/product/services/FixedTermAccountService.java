@@ -8,9 +8,9 @@ public interface FixedTermAccountService {
     Flux<FixedTermAccount> findAll();
     Mono<FixedTermAccount> save(FixedTermAccount card);
     Flux<FixedTermAccount> saveAll(Flux<FixedTermAccount> cards);
-    Flux<FixedTermAccount> findAllByDni(String dni);
-    Mono<FixedTermAccount> findByDniAndAccount(String dni, String account);
-    Mono<Boolean> findByDni(String dni);
+    Flux<FixedTermAccount> findAllByIdentifier(String identifier);
+    Mono<FixedTermAccount> findByIdentifierAndAccount(String identifier, String account);
+    Mono<Boolean> findByIdentifier(String identifier);
     Mono<FixedTermAccount> update(FixedTermAccount card,String id);
     Mono<Void> delete(String id);
 }

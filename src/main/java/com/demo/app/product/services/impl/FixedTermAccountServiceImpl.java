@@ -36,18 +36,18 @@ public class FixedTermAccountServiceImpl implements FixedTermAccountService {
     }
 
     @Override
-    public Flux<FixedTermAccount> findAllByDni(String dni) {
-        return cardRepository.findAllByDni(dni);
+    public Flux<FixedTermAccount> findAllByIdentifier(String identifier) {
+        return cardRepository.findAllByIdentifier(identifier);
     }
 
     @Override
-    public Mono<FixedTermAccount> findByDniAndAccount(String dni, String account) {
-        return cardRepository.findByDniAndAccountNumber(dni,account);
+    public Mono<FixedTermAccount> findByIdentifierAndAccount(String identifier, String account) {
+        return cardRepository.findByIdentifierAndAccountNumber(identifier,account);
     }
 
     @Override
-    public Mono<Boolean> findByDni(String dni) {
-        return cardRepository.findByDni(dni).hasElement().flatMap(FixedTermAccountServiceImpl::apply);
+    public Mono<Boolean> findByIdentifier(String identifier) {
+        return cardRepository.findByIdentifier(identifier).hasElement().flatMap(FixedTermAccountServiceImpl::apply);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class FixedTermAccountServiceImpl implements FixedTermAccountService {
             x.setAccountNumber(card.getAccountNumber());
             x.setCurrency(card.getCurrency());
             x.setBalance(card.getBalance());
-            x.setDni(card.getDni());
+            x.setIdentifier(card.getIdentifier());
             x.setNumberTransactions(card.getNumberTransactions());
             return cardRepository.save(x);
         });

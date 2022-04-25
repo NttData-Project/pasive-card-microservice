@@ -8,7 +8,7 @@ import reactor.core.publisher.Mono;
 
 @Repository
 public interface SavingAccountRepository extends ReactiveMongoRepository<SavingAccount,String> {
-    Mono<SavingAccount> findByDni(String dni);
-    Flux<SavingAccount> findAllByDni(String dni);
-    Mono<SavingAccount> findByDniAndAccountNumber(String dni, String account);
+    Mono<SavingAccount> findByIdentifier(String identifier);
+    Flux<SavingAccount> findAllByIdentifier(String identifier);
+    Mono<SavingAccount> findByIdentifierAndAccountNumber(String identifier, String account);
 }

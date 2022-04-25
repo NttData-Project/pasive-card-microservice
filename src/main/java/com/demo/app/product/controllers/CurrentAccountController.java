@@ -28,19 +28,19 @@ public class CurrentAccountController {
         return ResponseEntity.ok(cardService.findAll());
     }
 
-    @GetMapping("/all/dni/{dni}")
-    public Flux<CurrentAccount> findAllByDni(@PathVariable String dni){
-        return cardService.findAllByDni(dni);
+    @GetMapping("/all/identifier/{identifier}")
+    public Flux<CurrentAccount> findAllByIdentifier(@PathVariable String identifier){
+        return cardService.findAllByIdentifier(identifier);
     }
 
-    @GetMapping("/dni/{dni}")
-    public Mono<Boolean> findByDni(@PathVariable String dni){
-        return cardService.findByDni(dni);
+    @GetMapping("/identifier/{identifier}")
+    public Mono<Boolean> findByIdentifier(@PathVariable String identifier){
+        return cardService.findByIdentifier(identifier);
     }
 
-    @GetMapping("/dni/{dni}/account/{account}")
-    public Mono<CurrentAccount> findByDniAndAccount(@PathVariable String dni,@PathVariable String account){
-        return cardService.findByDniAndAccount(dni,account);
+    @GetMapping("/identifier/{identifier}/account/{account}")
+    public Mono<CurrentAccount> findByIdentifierAndAccount(@PathVariable String identifier,@PathVariable String account){
+        return cardService.findByIdentifierAndAccount(identifier,account);
     }
 
     @PostMapping
@@ -55,7 +55,10 @@ public class CurrentAccountController {
     public Mono<ResponseEntity<CurrentAccount>> update(@RequestBody CurrentAccount card, @PathVariable String id){
         return cardService.update(card,id).map(ResponseEntity::ok).defaultIfEmpty(ResponseEntity.notFound().build());
     }
-
+    @PutMapping("/identifier/{identifier}/account/{account}")
+    public Mono<ResponseEntity<CurrentAccount>> updateByAccountAndDni(@RequestBody CurrentAccount card,@PathVariable String identifier,@PathVariable String account){
+        return cardService.updateByAccountNumberAndIdentifier(card,identifier,account).map(ResponseEntity::ok).defaultIfEmpty(ResponseEntity.notFound().build());
+    }
     @DeleteMapping("/{id}")
     public Mono<ResponseEntity<Void>> delete(@PathVariable String id){
         return cardService.delete(id).map(ResponseEntity::ok).defaultIfEmpty(ResponseEntity.notFound().build());

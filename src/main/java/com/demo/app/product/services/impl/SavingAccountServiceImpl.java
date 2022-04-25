@@ -36,18 +36,18 @@ public class SavingAccountServiceImpl implements SavingAccountService {
     }
 
     @Override
-    public Flux<SavingAccount> findAllByDni(String dni) {
-        return cardRepository.findAllByDni(dni);
+    public Flux<SavingAccount> findAllByIdentifier(String identifier) {
+        return cardRepository.findAllByIdentifier(identifier);
     }
 
     @Override
-    public Mono<SavingAccount> findByDniAndAccount(String dni, String account) {
-        return cardRepository.findByDniAndAccountNumber(dni,account);
+    public Mono<SavingAccount> findByIdentifierAndAccount(String identifier, String account) {
+        return cardRepository.findByIdentifierAndAccountNumber(identifier,account);
     }
 
     @Override
-    public Mono<Boolean> findByDni(String dni) {
-        return cardRepository.findByDni(dni).hasElement().flatMap(SavingAccountServiceImpl::apply);
+    public Mono<Boolean> findByIdentifier(String identifier) {
+        return cardRepository.findByIdentifier(identifier).hasElement().flatMap(SavingAccountServiceImpl::apply);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class SavingAccountServiceImpl implements SavingAccountService {
             x.setAccountNumber(card.getAccountNumber());
             x.setCurrency(card.getCurrency());
             x.setBalance(card.getBalance());
-            x.setDni(card.getDni());
+            x.setIdentifier(card.getIdentifier());
             x.setNumberTransactions(card.getNumberTransactions());
             return cardRepository.save(x);
         });

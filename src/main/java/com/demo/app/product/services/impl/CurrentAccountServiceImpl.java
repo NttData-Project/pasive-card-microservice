@@ -37,18 +37,30 @@ public class CurrentAccountServiceImpl implements CurrentAccountService{
     }
 
     @Override
-    public Flux<CurrentAccount> findAllByDni(String dni) {
-        return cardRepository.findAllByDni(dni);
+    public Flux<CurrentAccount> findAllByIdentifier(String identifier) {
+        return cardRepository.findAllByIdentifier(identifier);
     }
 
     @Override
-    public Mono<CurrentAccount> findByDniAndAccount(String dni, String account) {
-        return cardRepository.findByDniAndAccountNumber(dni,account);
+    public Mono<CurrentAccount> findByIdentifierAndAccount(String dni, String account) {
+        return cardRepository.findByIdentifierAndAccountNumber(dni,account);
     }
 
     @Override
-    public Mono<Boolean> findByDni(String dni) {
-        return cardRepository.findByDni(dni).hasElement().flatMap(CurrentAccountServiceImpl::apply);
+    public Mono<Boolean> findByIdentifier(String identifier) {
+        return cardRepository.findByIdentifier(identifier).hasElement().flatMap(CurrentAccountServiceImpl::apply);
+    }
+
+    @Override
+    public Mono<CurrentAccount> updateByAccountNumberAndIdentifier(CurrentAccount card,String identifier, String account) {
+        return cardRepository.findByIdentifierAndAccountNumber(identifier,account).flatMap(x->{
+            x.setCvc(card.getCvc());
+            x.setAccountNumber(card.getAccountNumber());
+            x.setCurrency(card.getCurrency());
+            x.setBalance(card.getBalance());
+            x.setIdentifier(card.getIdentifier());
+            return cardRepository.save(x);
+        });
     }
 
     @Override
@@ -58,7 +70,7 @@ public class CurrentAccountServiceImpl implements CurrentAccountService{
             x.setAccountNumber(card.getAccountNumber());
             x.setCurrency(card.getCurrency());
             x.setBalance(card.getBalance());
-            x.setDni(card.getDni());
+            x.setIdentifier(card.getIdentifier());
             return cardRepository.save(x);
         });
     }

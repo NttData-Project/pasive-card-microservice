@@ -9,7 +9,7 @@ import reactor.core.publisher.Mono;
 
 @Repository
 public interface CurrentAccountRepository extends ReactiveMongoRepository<CurrentAccount,String> {
-    Mono<CurrentAccount> findByDni(String dni);
-    Mono<CurrentAccount> findByDniAndAccountNumber(String dni,String account);
-    Flux<CurrentAccount> findAllByDni(String dni);
+    Mono<CurrentAccount> findByIdentifier(String identifier);
+    Mono<CurrentAccount> findByIdentifierAndAccountNumber(String identifier,String account);
+    Flux<CurrentAccount> findAllByIdentifier(String identifier);
 }
