@@ -42,5 +42,5 @@ public class SavingAccount extends Audit{
     private String identifier;
 
     @Field(name = "number_transactions")
-    private Integer numberTransactions;
+    private Integer numberTransactions = 3;
 }
